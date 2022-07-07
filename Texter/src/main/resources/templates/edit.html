@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+    <head th:include="layout :: head">
+    </head>
+
+    <body>
+        <div th:include="layout :: navigationPanel"></div>
+        <div class="container">
+            <h1 class="py-5">Zmień hasło:</h1>
+            <form method="post" th:action="@{/edit}" th:object="${user}" class="col card p-3 mb-5">
+                <input type="hidden" th:field="*{userId}" value="${user.userId}"/>
+                <input type="hidden" th:field="*{login}" value="${user.login}"/>
+                <div class="form-group">
+                    <label for="password">Hasło</label>
+                    <input id="password" placeholder="Podaj hasło" required type="password" th:field="*{password}"
+                           class="form-control"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Zmień hasło</button>
+            </form>
+        </div>
+    </body>
+    
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="head">
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Texter</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div th:fragment="navigationPanel">
+        <nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
+            <div class="container-fluid">
+                <span sec:authorize="isAuthenticated()" class="navbar-brand">Profil
+                <div class="nav">
+                    <li sec:authorize="isAuthenticated()">
+                        <a class="navbar-brand" th:href="@{/homePage}">Strona główna</a></li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a class="navbar-brand" th:href="@{/confirmDelete}">Usuń użytkownika</a></li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a class="navbar-brand" th:href="@{/edit}">Zmień hasło</a></li>
+                </div>
+                </span>
+                <span sec:authorize="isAuthenticated()" class="navbar-brand">Wiadomości
+                <div class="nav">
+                    <li sec:authorize="isAuthenticated()">
+                        <a class="navbar-brand" th:href="@{/users}">Dodaj kontakty</a></li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a class="navbar-brand" th:href="@{/contacts}">Wyświetl kontakty</a></li>
+                </div>
+                </span>
+                <ul class="nav navbar-nav">
+                    <li sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/login}">Zaloguj się</a></li>
+                    <li sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/register}">Zarejestruj się</a></li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{/logout}">Wyloguj</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>

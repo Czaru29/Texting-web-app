@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+
+<body>
+    <div th:include="layout :: navigationPanel"></div>
+    <div class="container">
+        <h1 class="py-5">Konwersacja:</h1>
+        <div th:if="${#lists.isEmpty(messagesList)}">
+            Brak wiadomości w tej konwersacji
+        </div>
+        <table class="table" style="" th:if="${!#lists.isEmpty(messagesList)}">
+            <tr> <th th:hidden="true">Wiadomość od odbiorcy</th><th th:hidden="true">Wiadomość od nadawcy</th>
+            </tr>
+            <tr th:each="message:${messagesList}">
+                    <span th:if="${message.getSender().getUserId()} != ${loggedUserId}">
+                        <td th:title="${#temporals.format(message.date, 'yyyy-MM-dd HH:mm:ss')}"
+                            th:bgcolor="grey" style="font-size: large; color: white; border-radius: 15px"
+                            th:text="${message.sender.getLogin()} + ': ' + ${message.content}"></td>
+                        <td th:bgcolor="white" style="border-radius: 15px"></td>
+                    </span>
+                    <span th:if="${message.getSender().getUserId()} == ${loggedUserId}">
+                        <td th:bgcolor="white" style="border-radius: 15px"></td>
+                        <td th:title="${#temporals.format(message.date, 'yyyy-MM-dd HH:mm:ss')}"
+                            th:bgcolor="royalblue" style="font-size: large; color: white; border-radius: 15px"
+                            th:align="right" th:text="${message.sender.getLogin()} + ': ' + ${message.content}"></td>
+                    </span>
+            </tr>
+        </table>
+        <h2 class="py-5">Nowa wiadomość:</h2>
+        <form method="post" th:action="@{/conversation}" th:object="${newMessage}" class="col card p-3 mb-5">
+            <input type="hidden" th:field="*{messageId}" />
+            <input type="hidden" th:field="*{receiver}" />
+            <input type="hidden" th:field="*{sender}" />
+            <input type="hidden" th:field="*{date}" />
+            <div class="form-group">
+                <label for="message">Wiadomość</label>
+                <input id="message" placeholder="Wiadomość" required type="text" th:field="*{content}"
+                       class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
+        </form>
+    </div>
+</body>
+</html>

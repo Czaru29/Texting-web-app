@@ -1,0 +1,4 @@
+2022-01-30 10:29:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Wartość za długa dla kolumny "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan sollicitudin rhoncus. Vivamus vulputate, erat non volutpat... (515)"
+Value too long for column "CONTENT VARCHAR(255)": "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan sollicitudin rhoncus. Vivamus vulputate, erat non volutpat... (515)"; SQL statement:
+insert into messages (message_id, content, date, receiver_id, sender_id) values (null, ?, ?, ?, ?) [22001-200]

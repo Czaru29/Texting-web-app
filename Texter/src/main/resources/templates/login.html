@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+    <head th:include="layout :: head">
+    </head>
+
+    <body>
+        <div th:include="layout :: navigationPanel"></div>
+        <div  class="container">
+        <h1 class="py-5">Logowanie:</h1>
+
+        <form method="post" th:action="@{/login}" class="col card p-3 mb-5">
+            <div class="form-group">
+                <label for="login">Login</label>
+                <input id="login" name="login" placeholder="Podaj login" required type="text"
+                       class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="password">Hasło</label>
+                <input id="password" name="passwd" placeholder="Podaj hasło" required type="password"
+                       class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Zaloguj się</button>
+        </form>
+        </div>
+    </body>
+</html>

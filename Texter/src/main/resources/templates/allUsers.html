@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+
+<body>
+    <div th:include="layout :: navigationPanel"></div>
+    <div class="container">
+        <h1 class="py-5">Lista użytkowników:</h1>
+        <table class="table table-striped table-bordered">
+            <tr> <th>ID</th><th>Login</th><th>Dodaj do kontaktów</th>
+            </tr>
+            <tr th:if="${#lists.isEmpty(usersList)}">
+                <td colspan="5">Brak użytkowników...</td>
+            </tr>
+            <tr th:each="user:${usersList}">
+                <td th:text="${user.userId}"></td>
+                <td th:text="${user.login}"></td>
+                <td><a class="btn btn-info" th:href="@{/addContact/{contactId}(contactId=${user.userId})}">Dodaj</a></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
